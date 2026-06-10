@@ -13,7 +13,7 @@ main:
     syscall
     li $v0, 5
     syscall
-    move $t0, $v0       # $t0 = ano atual (comeÁa em ano1)
+    move $t0, $v0       # $t0 = ano atual (come√ßa em ano1)
 
     # Ler o segundo ano
     li $v0, 4
@@ -24,9 +24,9 @@ main:
     move $t1, $v0       # $t1 = ano limite (ano2)
 
 
-    sub $t2, $t1, $t0   # $t2 = ano2 - ano1 (calcula a diferenÁa)
+    sub $t2, $t1, $t0   # $t2 = ano2 - ano1 (calcula a diferen√ßa)
     li $t3, 1000        # $t3 = limite de 1000 anos
-    bgt $t2, $t3, exib_erro # Se a diferenÁa for MAIOR que 1000, vai para o erro
+    bgt $t2, $t3, exib_erro # Se a diferen√ßa for MAIOR que 1000, vai para o erro
     
     # Exibir a mensagem inicial do resultado
     li $v0, 4
@@ -37,31 +37,31 @@ filtragem:
     # Se o ano atual ($t0) for maior que o ano limite ($t1), encerra o programa
     bgt $t0, $t1, encerrar
 
-    # Regra 1: Se divisÌvel por 400 -> … bissexto
+    # Regra 1: Se divis√≠vel por 400 -> √â bissexto
     rem $t3, $t0, 400
     beq $t3, $zero, eh_bissexto
 
-    # Regra 2: Se divisÌvel por 100 -> N„o È bissexto
+    # Regra 2: Se divis√≠vel por 100 -> N√£o √© bissexto
     rem $t3, $t0, 100
     beq $t3, $zero, imprimir_nao_bissexto
 
-    # Regra 3: Se divisÌvel por 4 -> … bissexto
+    # Regra 3: Se divis√≠vel por 4 -> √â bissexto
     rem $t3, $t0, 4
     beq $t3, $zero, eh_bissexto
 
 imprimir_nao_bissexto:
-    # Imprime o ano que n„o È bissexto
+    # Imprime o ano que n√£o √© bissexto
     li $v0, 1
     move $a0, $t0
     syscall
 
-    # Imprime um espaÁo em branco para separar os anos
+    # Imprime um espa√ßo em branco para separar os anos
     li $v0, 4
     la $a0, espaco
     syscall
 
 eh_bissexto:
-    # Incrementa o ano atual e volta para o laÁo
+    # Incrementa o ano atual e volta para o la√ßo
     addi $t0, $t0, 1
     j filtragem
     
